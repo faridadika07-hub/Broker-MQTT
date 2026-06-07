@@ -40,30 +40,30 @@ export default function App() {
   const setAllRelaysVoice = (state: boolean) => {
     if (extPatterns.p1 || extPatterns.p2) return;
     setExtRelays({ r1: state, r2: state, r3: state, r4: state });
-    ['1','2','3','4'].forEach(n => publishToAll(`iot/relay/${n}`, state ? 'ON' : 'OFF'));
+    ['1','2','3','4'].forEach(n => publishToAll(`iot/farid_2026_xk9p/relay/${n}`, state ? 'ON' : 'OFF'));
   };
 
   const setRelayVoice = (id: number, state: boolean) => {
     if (extPatterns.p1 || extPatterns.p2) return;
     setExtRelays(prev => ({ ...prev, [`r${id}`]: state }));
-    publishToAll(`iot/relay/${id}`, state ? 'ON' : 'OFF');
+    publishToAll(`iot/farid_2026_xk9p/relay/${id}`, state ? 'ON' : 'OFF');
   };
 
   const setAllPatternsVoice = (state: boolean) => {
     setExtPatterns({ p1: state, p2: state });
-    ['1','2'].forEach(n => publishToAll(`iot/pola/${n}`, state ? 'ON' : 'OFF'));
+    ['1','2'].forEach(n => publishToAll(`iot/farid_2026_xk9p/pola/${n}`, state ? 'ON' : 'OFF'));
   };
 
   const setPatternVoice = (id: number, state: boolean) => {
     setExtPatterns(prev => ({ ...prev, [`p${id}`]: state }));
-    publishToAll(`iot/pola/${id}`, state ? 'ON' : 'OFF');
+    publishToAll(`iot/farid_2026_xk9p/pola/${id}`, state ? 'ON' : 'OFF');
   };
 
   const shutdownVoice = () => {
     setExtRelays({ r1: false, r2: false, r3: false, r4: false });
     setExtPatterns({ p1: false, p2: false });
-    ['1','2','3','4'].forEach(n => publishToAll(`iot/relay/${n}`, 'OFF'));
-    ['1','2'].forEach(n => publishToAll(`iot/pola/${n}`, 'OFF'));
+    ['1','2','3','4'].forEach(n => publishToAll(`iot/farid_2026_xk9p/relay/${n}`, 'OFF'));
+    ['1','2'].forEach(n => publishToAll(`iot/farid_2026_xk9p/pola/${n}`, 'OFF'));
   };
 
   const getSensorTTS = (type: 'suhu' | 'kelembapan' | 'semua') => {
